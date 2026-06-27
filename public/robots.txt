@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://Taminabeauty.com/sitemap.xml
+
+# Target markets: US, UK, Canada
+# International shipping available
