@@ -58,7 +58,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      navigate(`/products?search=${searchQuery}`)
+      navigate(`#/products?search=${searchQuery}`)
       setIsSearchOpen(false)
     }
   }
@@ -71,7 +71,7 @@ const Navbar = () => {
             
             {/* Left: Brand Name (Logo) */}
             <div>
-              <Link to="/" className="flex items-center group relative overflow-hidden py-1 px-2 sm:py-2 sm:px-4">
+              <Link to="#/" className="flex items-center group relative overflow-hidden py-1 px-2 sm:py-2 sm:px-4">
                 <div className="flex overflow-hidden relative">
                   {"TAMINA".split("").map((char, index) => (
                     <motion.span
@@ -106,14 +106,14 @@ const Navbar = () => {
               <button onClick={() => setIsSearchOpen(true)} className="text-pink-500 hover:text-pink-600 transition-colors">
                 <Search size={18} strokeWidth={1.5} />
               </button>
-              <Link to={user ? (user.role === 'admin' ? '/admin/dashboard' : '/dashboard') : '/auth'} className="text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to={user ? (user.role === 'admin' ? '#/admin/dashboard' : '#/dashboard') : '#/auth'} className="text-pink-500 hover:text-pink-600 transition-colors">
                 <User size={18} strokeWidth={1.5} />
               </Link>
-              <Link to="/wishlist" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to="#/wishlist" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
                 <Heart size={18} strokeWidth={1.5} className={wishlistCount > 0 ? "text-pink-500 fill-pink-500" : ""} />
                 <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{wishlistCount}</span>
               </Link>
-              <Link to="/cart" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to="#/cart" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
                 <ShoppingBag size={18} strokeWidth={1.5} />
                 <span className="absolute top-0 right-0 bg-pink-500 text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{cartItemCount}</span>
               </Link>
@@ -152,7 +152,7 @@ const Navbar = () => {
                   <button 
                     key={tag}
                     type="button"
-                    onClick={() => {setSearchQuery(tag); navigate(`/products?search=${tag}`)}}
+                    onClick={() => {setSearchQuery(tag); navigate(`#/products?search=${tag}`)}}
                     className="text-[10px] font-bold uppercase tracking-widest border border-gray-100 px-6 py-2 hover:bg-primary hover:text-white transition-all"
                   >
                     {tag}
