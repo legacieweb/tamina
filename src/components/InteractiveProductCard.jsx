@@ -37,7 +37,7 @@ const InteractiveProductCard = ({ product, idx, showBadge = false }) => {
         setRotate({ x: 0, y: 0 })
       }}
     >
-      <Link to={`/product/${product.id}`} className="block">
+      <Link to={`#/product/${product.id}`} className="block">
         <motion.div
           style={{ 
             perspective: 1000,

@@ -181,7 +181,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="lg:col-span-5 space-y-12"
           >
-            <Link to="/" className="block">
+            <Link to="#/" className="block">
               <motion.div
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.3 }}
@@ -245,13 +245,13 @@ const Footer = () => {
               <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Collections</h4>
               <ul className="space-y-4">
                 {[
-                  { name: 'All Products', path: '/products' },
-                  { name: 'Skincare', path: '/products?category=Skincare' },
-                  { name: 'Makeup', path: '/products?category=Makeup' },
-                  { name: 'Haircare', path: '/products?category=Haircare' },
-                  { name: 'Fragrance', path: '/products?category=Fragrance' },
-                  { name: 'Nails', path: '/products?category=Nails' },
-                  { name: 'Beauty Tools', path: '/products?category=Beauty Tools' }
+{ name: 'All Products', path: '#/products' },
+                   { name: 'Skincare', path: '#/products?category=Skincare' },
+                   { name: 'Makeup', path: '#/products?category=Makeup' },
+                   { name: 'Haircare', path: '#/products?category=Haircare' },
+                   { name: 'Fragrance', path: '#/products?category=Fragrance' },
+                   { name: 'Nails', path: '#/products?category=Nails' },
+                   { name: 'Beauty Tools', path: '#/products?category=Beauty Tools' }
                 ].map(link => (
                   <motion.li key={link.name} whileHover={{ x: 5 }}>
                     <Link to={link.path} className="text-sm font-bold text-gray-600 uppercase tracking-[0.2em] hover:text-accent transition-all inline-block">
@@ -266,9 +266,9 @@ const Footer = () => {
               <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">The House</h4>
               <ul className="space-y-4">
                 {[
-                  { name: 'Our Story', path: '/about' },
-                  { name: 'Contact', path: '/contact' },
-                  { name: 'Store Locator', path: '/store-locator' }
+                  { name: 'Our Story', path: '#/about' },
+                  { name: 'Contact', path: '#/contact' },
+                  { name: 'Store Locator', path: '#/store-locator' }
                 ].map(link => (
                   <motion.li key={link.name} whileHover={{ x: 5 }}>
                     <Link to={link.path} className="text-sm font-bold text-gray-600 uppercase tracking-[0.2em] hover:text-accent transition-all inline-block">
@@ -317,10 +317,10 @@ const Footer = () => {
 
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               {[
-                { name: 'Privacy', path: '/privacy-policy' },
-                { name: 'Terms', path: '/terms-of-service' },
-                { name: 'Shipping', path: '/shipping-policy' },
-                { name: 'Refunds', path: '/refunds-policy' }
+                { name: 'Privacy', path: '#/privacy-policy' },
+                { name: 'Terms', path: '#/terms-of-service' },
+                { name: 'Shipping', path: '#/shipping-policy' },
+                { name: 'Refunds', path: '#/refunds-policy' }
               ].map(item => (
                 <Link key={item.name} to={item.path} className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 hover:text-primary transition-all">
                   {item.name}

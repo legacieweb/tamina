@@ -80,7 +80,7 @@ const ProductDetails = () => {
   const handleBuyNow = () => {
     if (inStock && currentVariant) {
       addToCart(product, currentVariant, quantity);
-      navigate('/checkout');
+      navigate('#/checkout');
     }
   };
 
@@ -155,7 +155,7 @@ const ProductDetails = () => {
                   <div className="relative">
                     <button 
                       onClick={() => {
-                        const productUrl = window.location.origin + `/product/${product.id}`
+                        const productUrl = window.location.origin + `#/product/${product.id}`
                         navigator.clipboard.writeText(productUrl)
                         setCopied(true)
                         setTimeout(() => setCopied(false), 2000)
@@ -182,13 +182,6 @@ const ProductDetails = () => {
                 <div className="flex items-end space-x-4 mb-8">
                   <p className="text-3xl font-black elegant-font">US$ {currentVariant?.price?.toLocaleString() || product.price.toLocaleString()}</p>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 pb-1">VAT Included</p>
-                </div>
-
-                <div className="p-6 bg-gray-50 border-l-2 border-accent mb-10">
-                  <p className="text-sm italic text-gray-600 leading-relaxed font-serif">
-                    "Crafted with care for your natural beauty. This elixir embodies the essence of Kenyan botanical luxury."
-                    <span className="block mt-2 text-[10px] font-bold uppercase tracking-widest text-primary">— Beauty Note</span>
-                  </p>
                 </div>
 
                 {/* Shipping Info */}
@@ -347,18 +340,18 @@ const ProductDetails = () => {
         <div className="mt-64">
           <div className="flex justify-between items-end mb-16">
             <h2 className="text-4xl font-black elegant-font tracking-tighter uppercase">More from the Archive</h2>
-            <Link to={`/products?category=${encodeURIComponent(product.category)}`} className="text-[10px] font-bold uppercase tracking-widest border-b border-primary pb-2">Products</Link>
+            <Link to={`#/products?category=${encodeURIComponent(product.category)}`} className="text-[10px] font-bold uppercase tracking-widest border-b border-primary pb-2">Products</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {relatedProducts.map(p => (
-              <Link key={p.id} to={`/product/${p.id}`} className="group">
-                <div className="aspect-[3/4] overflow-hidden bg-gray-50 mb-6 relative">
-                  <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-1000 group-hover:brightness-105" />
-                </div>
-                <h3 className="text-xl font-black elegant-font uppercase group-hover:text-accent transition-colors">{p.name}</h3>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-2">US$ {p.price.toLocaleString()}</p>
-              </Link>
-            ))}
+{relatedProducts.map(p => (
+               <Link key={p.id} to={`#/product/${p.id}`} className="group">
+                 <div className="aspect-[3/4] overflow-hidden bg-gray-50 mb-6 relative">
+                   <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-1000 group-hover:brightness-105" />
+                 </div>
+                 <h3 className="text-xl font-black elegant-font uppercase group-hover:text-accent transition-colors">{p.name}</h3>
+                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-2">US$ {p.price.toLocaleString()}</p>
+               </Link>
+             ))}
           </div>
         </div>
       </div>
