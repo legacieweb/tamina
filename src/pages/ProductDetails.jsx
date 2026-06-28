@@ -80,7 +80,7 @@ const ProductDetails = () => {
   const handleBuyNow = () => {
     if (inStock && currentVariant) {
       addToCart(product, currentVariant, quantity);
-      navigate('#/checkout');
+      navigate('/checkout');
     }
   };
 
@@ -340,11 +340,11 @@ const ProductDetails = () => {
         <div className="mt-64">
           <div className="flex justify-between items-end mb-16">
             <h2 className="text-4xl font-black elegant-font tracking-tighter uppercase">More from the Archive</h2>
-            <Link to={`#/products?category=${encodeURIComponent(product.category)}`} className="text-[10px] font-bold uppercase tracking-widest border-b border-primary pb-2">Products</Link>
+            <Link to={`/products?category=${encodeURIComponent(product.category)}`} className="text-[10px] font-bold uppercase tracking-widest border-b border-primary pb-2">Products</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
 {relatedProducts.map(p => (
-               <Link key={p.id} to={`#/product/${p.id}`} className="group">
+               <Link key={p.id} to={`/product/${p.id}`} className="group">
                  <div className="aspect-[3/4] overflow-hidden bg-gray-50 mb-6 relative">
                    <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-1000 group-hover:brightness-105" />
                  </div>

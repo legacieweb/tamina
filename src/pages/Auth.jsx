@@ -51,7 +51,7 @@ const Auth = () => {
           className="absolute inset-0"
         >
           <img 
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src="https://i.imgur.com/743mvgB.jpeg" 
             alt="Maison Editorial" 
             className="w-full h-full object-cover opacity-80"
           />
@@ -60,10 +60,10 @@ const Auth = () => {
 
         {/* Brand Overlay */}
         <div className="absolute top-12 left-12 z-10">
-          <Link to="/" className="text-3xl font-black elegant-font text-white tracking-tighter flex flex-col leading-none">
-            <span>TAMINA</span>
-            <span className="text-[8px] tracking-[0.8em] text-accent ml-1 -mt-1 font-bold">254</span>
-          </Link>
+<Link to="/" className="text-3xl font-black elegant-font text-white tracking-tighter flex flex-col leading-none">
+             <span>TAMINA</span>
+             <span className="text-[8px] tracking-[0.8em] text-accent ml-1 -mt-1 font-bold">254</span>
+           </Link>
         </div>
 
         <div className="absolute bottom-20 left-20 z-10 max-w-lg">
@@ -98,9 +98,9 @@ const Auth = () => {
           </button>
           
           <div className="lg:hidden">
-            <Link to="/" className="text-xl font-black elegant-font tracking-tighter flex flex-col leading-none text-center">
-              <span>TAMINA</span>
-            </Link>
+<Link to="/" className="text-xl font-black elegant-font tracking-tighter flex flex-col leading-none text-center">
+               <span>TAMINA</span>
+             </Link>
           </div>
           
           <div className="hidden lg:block text-[10px] font-bold uppercase tracking-widest text-gray-300">

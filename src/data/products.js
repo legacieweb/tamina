@@ -6,7 +6,7 @@ export const heroSlides = [
     title: "Summer Beauty Edit",
     subtitle: "Glow Naturally",
     description: "Discover our curated summer collection featuring lightweight formulas and radiant finishes.",
-    link: "#/collections/summer-beauty",
+    link: "/collections/summer-beauty",
     targetDate: "2026-07-15",
     discount: 25
   },
@@ -17,7 +17,7 @@ export const heroSlides = [
     title: "Makeup Mastery Set",
     subtitle: "Complete Kit",
     description: "Everything you need for a flawless look. Limited edition packaging.",
-    link: "#/collections/makeup-mastery",
+    link: "/collections/makeup-mastery",
     targetDate: "2026-06-30",
     discount: 35
   },
@@ -28,7 +28,7 @@ export const heroSlides = [
     title: "Nail Care Studio",
     subtitle: "Professional Grade",
     description: "Elevate your manicure with our professional nail care collection.",
-    link: "#/collections/nail-professional",
+    link: "/collections/nail-professional",
     discount: 15
   }
 ]

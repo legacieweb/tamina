@@ -159,14 +159,14 @@ const Home = () => {
           <div className="relative">
 <div className="flex md:grid md:grid-cols-8 gap-6 overflow-x-auto pb-1 scrollbar-hide">
 {[
-                   { name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '#/products?category=Skincare', icon: Leaf },
-                   { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '#/products?category=Makeup', icon: Heart },
-                   { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '#/products?category=Haircare', icon: Heart },
-                   { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '#/products?category=Fragrance', icon: Heart },
-                   { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '#/products?category=Nails', icon: Heart },
-                   { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '#/products?category=Beauty%20Tools', icon: Heart },
-                   { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '#/products?category=Wigs', icon: Heart },
-                   { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '#/products?category=Supplements', icon: Leaf }
+{ name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '/products?category=Skincare', icon: Leaf },
+                    { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '/products?category=Makeup', icon: Heart },
+                    { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '/products?category=Haircare', icon: Heart },
+                    { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '/products?category=Fragrance', icon: Heart },
+                    { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '/products?category=Nails', icon: Heart },
+                    { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '/products?category=Beauty%20Tools', icon: Heart },
+                    { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '/products?category=Wigs', icon: Heart },
+                    { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '/products?category=Supplements', icon: Leaf }
                  ].map((cat, idx) => (
                 <motion.div
                   key={cat.name}
@@ -215,14 +215,10 @@ const Home = () => {
                 Featured Collection
               </h2>
             </div>
-<motion.a
-               href="#/products"
-               whileHover={{ x: 5 }}
-               className="text-[8px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
-             >
-              View All
+<Link to="/products" className="text-[8px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center">
+              <span className="transition-transform group-hover:translate-x-1">View All</span>
               <ChevronRight size={14} className="ml-1" />
-            </motion.a>
+            </Link>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -265,22 +261,11 @@ const Home = () => {
               ))}
             </div>
 
-            <div className="text-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block"
-              >
-<Link
-                   to="#/limited-offers"
-                   className="inline-flex items-center gap-3 bg-primary text-white hover:bg-accent transition-all border-2 border-primary hover:border-accent px-8 py-3"
-                 >
-                   <ArrowUpRight size={16} />
-                   <span className="text-xs font-bold uppercase tracking-widest">
-                     View All Deals
-                   </span>
-                 </Link>
-              </motion.div>
+<div className="text-center">
+              <Link to="/limited-offers" className="inline-flex items-center gap-3 bg-primary text-white hover:bg-accent transition-all border-2 border-primary hover:border-accent px-8 py-3">
+                <ArrowUpRight size={16} />
+                <span className="text-xs font-bold uppercase tracking-widest">View All Deals</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -307,12 +292,9 @@ const Home = () => {
                   Supplements Collection
                 </h2>
               </div>
-<Link
-                 to="#/products?category=Supplements"
-                 className="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
-               >
-                View All
-                <ArrowUpRight size={14} className="ml-1" />
+<Link to="/products?category=Supplements" className="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center">
+              <span className="transition-transform group-hover:translate-x-1">View All</span>
+              <ArrowUpRight size={14} className="ml-1" />
               </Link>
             </motion.div>
 

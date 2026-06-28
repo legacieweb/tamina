@@ -50,15 +50,15 @@ const Products = ({ forcedCategory, forcedTag }) => {
   }, [category, searchQuery, products, tag])
 
   return (
-    <div className="pt-40 min-h-screen bg-white">
-      {/* Editorial Header */}
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12 mb-16">
+<div className="pt-20 sm:pt-40 min-h-screen bg-white">
+       {/* Editorial Header */}
+       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-16">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
           <div className="max-w-2xl">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block"
+              className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] text-accent mb-4 sm:mb-6 block"
             >
               Collection Archives
             </motion.span>
@@ -97,7 +97,7 @@ const Products = ({ forcedCategory, forcedTag }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-b border-gray-100 bg-gray-50/50"
           >
-            <div className="max-w-[1800px] mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-20">
+            <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 py-12 sm:py-16 grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-20">
               <div>
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-8">Category</h3>
                 <div className="flex flex-col space-y-4">
@@ -139,7 +139,7 @@ const Products = ({ forcedCategory, forcedTag }) => {
       </AnimatePresence>
 
       {/* Product Grid - Lookbook Style */}
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12 py-24">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 py-12 sm:py-24">
         {loading ? (
           <div className="py-32 flex flex-col items-center justify-center space-y-6">
             <Loader2 size={40} className="animate-spin text-accent" />

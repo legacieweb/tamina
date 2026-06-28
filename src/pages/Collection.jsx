@@ -19,31 +19,46 @@ const Collection = ({ title, description, category, tag }) => {
   if (collection) {
     return (
       <div className="collection-page bg-white">
-        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50 via-white to-pink-50">
-          <img
-            src={collection.heroImage}
-            alt={collection.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/40 to-transparent" />
-          <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-            <span className="text-accent text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">
-              {displayTag}
-            </span>
-            <h1 className="text-6xl md:text-8xl font-black elegant-font tracking-tighter text-white mb-4">
-              {displayTitle}
-            </h1>
-            {collection.subtitle && (
-              <p className="text-2xl md:text-3xl elegant-font italic text-accent">
-                {collection.subtitle}
-              </p>
-            )}
+        <section className="relative h-screen min-h-[400px] sm:h-[100dvh] sm:min-h-[500px] flex items-center justify-center overflow-hidden bg-white">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0"
+          >
+            <img
+              src={collection.heroImage}
+              alt={collection.title}
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-primary/50" />
+          </motion.div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-4 sm:space-y-6"
+            >
+              <span className="text-accent text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] mb-4 block">
+                {displayTag}
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black elegant-font tracking-tighter leading-tight text-white px-2">
+                {displayTitle}
+              </h1>
+              {collection.subtitle && (
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl elegant-font italic font-normal text-accent/90">
+                  {collection.subtitle}
+                </p>
+              )}
+            </motion.div>
           </div>
         </section>
 
-        <section className="py-20 px-6 md:px-12 bg-white">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 md:px-12 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
               {collectionProducts.map((product, idx) => (
                 <InteractiveProductCard key={product.id} product={product} idx={idx} />
               ))}
@@ -56,9 +71,9 @@ const Collection = ({ title, description, category, tag }) => {
 
   return (
     <div className="collection-page">
-      <div className="pt-40 pb-10 max-w-[1800px] mx-auto px-6 md:px-12 text-center">
-         <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6">{displayDesc}</p>
-         <h1 className="text-6xl md:text-9xl font-black elegant-font tracking-tighter uppercase leading-none">{displayTitle}</h1>
+      <div className="pt-20 sm:pt-40 pb-8 sm:pb-10 max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 text-center">
+         <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] text-accent mb-4 sm:mb-6">{displayDesc}</p>
+         <h1 className="text-4xl sm:text-6xl md:text-9xl font-black elegant-font tracking-tighter uppercase leading-tight">{displayTitle}</h1>
       </div>
       
       <div className="-mt-32">

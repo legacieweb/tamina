@@ -58,7 +58,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      navigate(`#/products?search=${searchQuery}`)
+      navigate(`/products?search=${searchQuery}`)
       setIsSearchOpen(false)
     }
   }
@@ -71,34 +71,34 @@ const Navbar = () => {
             
             {/* Left: Brand Name (Logo) */}
             <div>
-              <Link to="#/" className="flex items-center group relative overflow-hidden py-1 px-2 sm:py-2 sm:px-4">
-                <div className="flex overflow-hidden relative">
-                  {"TAMINA".split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{ y: "100%", opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      whileHover={{ y: "-100%" }}
-                      transition={{ 
-                        duration: 0.5, 
-                        delay: index * 0.03, 
-                        ease: "easeOut" 
-                      }}
-                      className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black elegant-font tracking-tighter leading-none relative block text-pink-500"
-                    >
-                      <span className="block">{char === " " ? "\u00A0" : char}</span>
-                      <span className="absolute top-full left-0 block text-primary">{char === " " ? "\u00A0" : char}</span>
-                    </motion.span>
-                  ))}
-                  <motion.div 
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="absolute bottom-0 left-0 w-full h-[1px] sm:h-[2px] bg-pink-500 origin-left"
-                  />
-                </div>
-              </Link>
+<Link to="/" className="flex items-center group relative overflow-hidden py-1 px-2 sm:py-2 sm:px-4">
+                 <div className="flex overflow-hidden relative">
+                   {"TAMINA".split("").map((char, index) => (
+                     <motion.span
+                       key={index}
+                       initial={{ y: "100%", opacity: 0 }}
+                       animate={{ y: 0, opacity: 1 }}
+                       whileHover={{ y: "-100%" }}
+                       transition={{ 
+                         duration: 0.5, 
+                         delay: index * 0.03, 
+                         ease: "easeOut" 
+                       }}
+                       className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black elegant-font tracking-tighter leading-none relative block text-pink-500"
+                     >
+                       <span className="block">{char === " " ? "\u00A0" : char}</span>
+                       <span className="absolute top-full left-0 block text-primary">{char === " " ? "\u00A0" : char}</span>
+                     </motion.span>
+                   ))}
+                   <motion.div 
+                     initial={{ scaleX: 0 }}
+                     animate={{ scaleX: 0 }}
+                     whileHover={{ scaleX: 1 }}
+                     transition={{ duration: 0.5, ease: "easeOut" }}
+                     className="absolute bottom-0 left-0 w-full h-[1px] sm:h-[2px] bg-pink-500 origin-left"
+                   />
+                 </div>
+               </Link>
             </div>
 
             {/* Right: Actions */}
@@ -106,14 +106,14 @@ const Navbar = () => {
               <button onClick={() => setIsSearchOpen(true)} className="text-pink-500 hover:text-pink-600 transition-colors">
                 <Search size={18} strokeWidth={1.5} />
               </button>
-              <Link to={user ? (user.role === 'admin' ? '#/admin/dashboard' : '#/dashboard') : '#/auth'} className="text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to={user ? (user.role === 'admin' ? '/admin/dashboard' : '/dashboard') : '/auth'} className="text-pink-500 hover:text-pink-600 transition-colors">
                 <User size={18} strokeWidth={1.5} />
               </Link>
-              <Link to="#/wishlist" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to="/wishlist" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
                 <Heart size={18} strokeWidth={1.5} className={wishlistCount > 0 ? "text-pink-500 fill-pink-500" : ""} />
                 <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{wishlistCount}</span>
               </Link>
-              <Link to="#/cart" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
+              <Link to="/cart" className="relative p-2 text-pink-500 hover:text-pink-600 transition-colors">
                 <ShoppingBag size={18} strokeWidth={1.5} />
                 <span className="absolute top-0 right-0 bg-pink-500 text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{cartItemCount}</span>
               </Link>
@@ -152,7 +152,7 @@ const Navbar = () => {
                   <button 
                     key={tag}
                     type="button"
-                    onClick={() => {setSearchQuery(tag); navigate(`#/products?search=${tag}`)}}
+                    onClick={() => {setSearchQuery(tag); navigate(`/products?search=${tag}`)}}
                     className="text-[10px] font-bold uppercase tracking-widest border border-gray-100 px-6 py-2 hover:bg-primary hover:text-white transition-all"
                   >
                     {tag}
@@ -181,13 +181,12 @@ const Footer = () => {
             viewport={{ once: true }}
             className="lg:col-span-5 space-y-12"
           >
-            <Link to="#/" className="block">
+<Link to="/" className="block">
               <motion.div
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.3 }}
                 className="flex items-center space-x-4"
               >
-              
                 <h3 className="text-3xl font-black elegant-font">
                   TAMINA <span className="text-accent">Beauty</span>
                 </h3>
@@ -244,15 +243,15 @@ const Footer = () => {
             <div>
               <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">Collections</h4>
               <ul className="space-y-4">
-                {[
-{ name: 'All Products', path: '#/products' },
-                   { name: 'Skincare', path: '#/products?category=Skincare' },
-                   { name: 'Makeup', path: '#/products?category=Makeup' },
-                   { name: 'Haircare', path: '#/products?category=Haircare' },
-                   { name: 'Fragrance', path: '#/products?category=Fragrance' },
-                   { name: 'Nails', path: '#/products?category=Nails' },
-                   { name: 'Beauty Tools', path: '#/products?category=Beauty Tools' }
-                ].map(link => (
+{[
+ { name: 'All Products', path: '/products' },
+                    { name: 'Skincare', path: '/products?category=Skincare' },
+                    { name: 'Makeup', path: '/products?category=Makeup' },
+                    { name: 'Haircare', path: '/products?category=Haircare' },
+                    { name: 'Fragrance', path: '/products?category=Fragrance' },
+                    { name: 'Nails', path: '/products?category=Nails' },
+                    { name: 'Beauty Tools', path: '/products?category=Beauty Tools' }
+                 ].map(link => (
                   <motion.li key={link.name} whileHover={{ x: 5 }}>
                     <Link to={link.path} className="text-sm font-bold text-gray-600 uppercase tracking-[0.2em] hover:text-accent transition-all inline-block">
                       {link.name}
@@ -265,11 +264,11 @@ const Footer = () => {
             <div>
               <h4 className="text-xs font-black uppercase tracking-[0.5em] text-accent mb-6">The House</h4>
               <ul className="space-y-4">
-                {[
-                  { name: 'Our Story', path: '#/about' },
-                  { name: 'Contact', path: '#/contact' },
-                  { name: 'Store Locator', path: '#/store-locator' }
-                ].map(link => (
+{[
+                   { name: 'Our Story', path: '/about' },
+                   { name: 'Contact', path: '/contact' },
+                   { name: 'Store Locator', path: '/store-locator' }
+                 ].map(link => (
                   <motion.li key={link.name} whileHover={{ x: 5 }}>
                     <Link to={link.path} className="text-sm font-bold text-gray-600 uppercase tracking-[0.2em] hover:text-accent transition-all inline-block">
                       {link.name}
@@ -316,12 +315,12 @@ const Footer = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-              {[
-                { name: 'Privacy', path: '#/privacy-policy' },
-                { name: 'Terms', path: '#/terms-of-service' },
-                { name: 'Shipping', path: '#/shipping-policy' },
-                { name: 'Refunds', path: '#/refunds-policy' }
-              ].map(item => (
+{[
+                 { name: 'Privacy', path: '/privacy-policy' },
+                 { name: 'Terms', path: '/terms-of-service' },
+                 { name: 'Shipping', path: '/shipping-policy' },
+                 { name: 'Refunds', path: '/refunds-policy' }
+               ].map(item => (
                 <Link key={item.name} to={item.path} className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 hover:text-primary transition-all">
                   {item.name}
                 </Link>

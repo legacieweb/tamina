@@ -23,34 +23,35 @@ const InteractiveProductCard = ({ product, idx, showBadge = false }) => {
   }
 
   return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: idx * 0.1 }}
-      className="group relative"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false)
-        setRotate({ x: 0, y: 0 })
-      }}
-    >
-      <Link to={`#/product/${product.id}`} className="block">
-        <motion.div
-          style={{ 
-            perspective: 1000,
-            transformStyle: "preserve-3d"
-          }}
-          animate={{ 
-            rotateX: isHovered ? rotate.x : 0, 
-            rotateY: isHovered ? rotate.y : 0,
-            scale: isHovered ? 1.05 : 1
-          }}
-          transition={{ duration: 0.3 }}
-          className="relative overflow-hidden bg-white aspect-[3/4] mb-6"
-        >
+<motion.div
+           ref={cardRef}
+           initial={{ opacity: 0, y: 40 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.8, delay: idx * 0.1 }}
+           className="group relative"
+           onMouseMove={handleMouseMove}
+           onMouseEnter={() => setIsHovered(true)}
+           onMouseLeave={() => {
+             setIsHovered(false)
+             setRotate({ x: 0, y: 0 })
+           }}
+         >
+           <Link to={`/product/${product.id}`} className="block">
+             <motion.div
+               style={{ 
+                 perspective: 1000,
+                 transformStyle: "preserve-3d"
+               }}
+               whileHover={{ scale: 1.05 }}
+               animate={{ 
+                 rotateX: isHovered ? rotate.x : 0, 
+                 rotateY: isHovered ? rotate.y : 0,
+                 scale: isHovered ? 1.05 : 1
+               }}
+               transition={{ duration: 0.3 }}
+               className="relative overflow-hidden bg-white aspect-[3/4] mb-4 sm:mb-6"
+             >
           <motion.img 
             src={product.images[0]} 
             alt={product.name}
@@ -107,10 +108,10 @@ const InteractiveProductCard = ({ product, idx, showBadge = false }) => {
           </div>
         </motion.div>
         <div>
-          <motion.h3 
-            className="text-lg font-black uppercase tracking-wider mb-2 transition-colors duration-300"
-            animate={{ color: isHovered ? '#e8b4b8' : '#1a1a1a' }}
-          >
+<motion.h3 
+             className="text-sm sm:text-lg font-black uppercase tracking-wider mb-1 sm:mb-2 transition-colors duration-300"
+             animate={{ color: isHovered ? '#e8b4b8' : '#1a1a1a' }}
+           >
             {truncateName(product.name)}
           </motion.h3>
           {product.originalPrice && (
