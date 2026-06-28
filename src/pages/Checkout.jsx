@@ -56,7 +56,7 @@ const SuccessPopup = ({ order, onClose }) => (
       <div className="space-y-4">
         <h2 className="text-3xl font-black elegant-font uppercase tracking-tighter">Order Secured</h2>
         <p className="text-sm font-serif italic text-gray-500">
-          Your pieces have been archived. A digital receipt has been downloaded to your device.
+          Your pieces have been archived. A digital timana has been downloaded to your device.
         </p>
       </div>
 
@@ -192,7 +192,7 @@ const Checkout = () => {
     doc.setFontSize(14)
     doc.text(`Order Total: $${order.total.toLocaleString()}`, 140, finalY + 15)
     
-    doc.save(`COUTUREE-ORDER-${order.order_number}.pdf`)
+    doc.save(`TAMINA-ORDER-${order.order_number}.pdf`)
   }
 
   const handlePlaceOrder = async (reference) => {

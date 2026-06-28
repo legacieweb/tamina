@@ -225,7 +225,7 @@ const Dashboard = () => {
               <div className="space-y-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Claim Past Guest Order</h3>
                 <p className="text-sm font-serif italic text-gray-500 leading-relaxed">
-                  Purchased as a guest? Enter your Order Number from your digital receipt to link it to your account.
+                  Purchased as a guest? Enter your Order Number from your digital timana to link it to your account.
                 </p>
               </div>
 
