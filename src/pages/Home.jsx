@@ -33,93 +33,64 @@ const HeroCarousel = () => {
 
   const current = heroSlides[currentSlide]
 
-  return (
-<section className="relative h-[100dvh] min-h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50 via-white to-pink-50">
+return (
+    <section className="relative h-screen min-h-[400px] sm:h-[100dvh] sm:min-h-[500px] flex items-center justify-center overflow-hidden bg-white">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
           <img
             src={current.image}
             alt={current.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/30 to-transparent" />
+          <div className="absolute inset-0 bg-black/20" />
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-4 sm:space-y-6"
         >
-          <span className="text-accent text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] mb-4 sm:mb-6 block">
-            {current.tag.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.02 }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black elegant-font tracking-tighter leading-none mb-4 sm:mb-6 md:mb-8 text-white px-2">
-            <span className="block overflow-hidden relative">
-              {current.title.split("").map((char, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  whileHover={{ y: "-100%" }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: index * 0.03, 
-                    ease: "easeOut" 
-                  }}
-                  className="inline-block relative"
-                >
-                  <span className="block">{char === " " ? "\u00A0" : char}</span>
-                  <span className="absolute top-full left-0 block text-accent">{char === " " ? "\u00A0" : char}</span>
-                </motion.span>
-              ))}
-            </span>
-            {current.subtitle && (
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl elegant-font italic font-normal text-accent mt-2 leading-tight">
-                {current.subtitle}
-              </span>
-            )}
-          </h1>
-
           {current.discount && (
-            <div className="inline-block bg-accent text-white px-3 py-1.5 sm:px-4 sm:py-2 mb-4 sm:mb-6">
-              <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em]">
+            <div className="inline-block bg-accent text-white px-4 py-1.5 sm:px-6 sm:py-2">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest">
                 {current.discount}% OFF • Limited Time
               </span>
             </div>
           )}
 
-          <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8 md:mb-12 max-w-xl sm:max-w-2xl mx-auto font-serif px-4 sm:px-0">
-            {truncateText(current.description, 80)}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black elegant-font tracking-tighter leading-tight text-white px-2">
+            {current.title}
+          </h1>
+
+          {current.subtitle && (
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl elegant-font italic font-normal text-accent/90">
+              {current.subtitle}
+            </p>
+          )}
+
+          <p className="text-sm sm:text-base text-white/80 max-w-md sm:max-w-xl mx-auto font-serif px-4">
+            {truncateText(current.description, 100)}
           </p>
 
           <Link
             to={current.link}
-            className="inline-block bg-primary text-white hover:bg-accent transition-all border-2 border-white"
+            className="inline-block bg-primary text-white hover:bg-accent transition-all border-2 border-white mt-4"
           >
-            <span className="block text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.4em] py-1.5 px-4 sm:py-2 sm:px-6">
+            <span className="block text-xs font-bold uppercase tracking-widest py-2 px-6">
               Shop Now
             </span>
-            <span className="block border-t border-white/30 py-2 px-4 sm:py-3 sm:px-6">
-              <ArrowUpRight size={14} className="sm:size-[18px] inline-block" />
+            <span className="block border-t border-white/30 py-2 px-6">
+              <ArrowUpRight size={18} className="inline-block" />
             </span>
           </Link>
         </motion.div>
@@ -127,27 +98,27 @@ const HeroCarousel = () => {
 
       <button
         onClick={prevSlide}
-        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all z-20"
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all z-20"
       >
-        <ChevronLeft size={20} className="sm:size-[24px] md:size-[28px] text-white" />
+        <ChevronLeft size={20} className="sm:size-[24px] text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all z-20"
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all z-20"
       >
-        <ChevronRight size={20} className="sm:size-[24px] md:size-[28px] text-white" />
+        <ChevronRight size={20} className="sm:size-[24px] text-white" />
       </button>
 
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3 z-20">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all ${
-                currentSlide === idx ? 'bg-accent w-6 sm:w-8' : 'bg-white/30'
-              }`}
-            />
-          ))}
+            className={`w-2 h-2 rounded-full transition-all ${
+              currentSlide === idx ? 'bg-accent w-8' : 'bg-white/50'
+            }`}
+          />
+        ))}
       </div>
     </section>
   )
@@ -187,16 +158,16 @@ const Home = () => {
 
           <div className="relative">
 <div className="flex md:grid md:grid-cols-8 gap-6 overflow-x-auto pb-1 scrollbar-hide">
-                {[
-                  { name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '/products?category=Skincare', icon: Leaf },
-                  { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '/products?category=Makeup', icon: Heart },
-                  { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '/products?category=Haircare', icon: Heart },
-                  { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '/products?category=Fragrance', icon: Heart },
-                  { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '/products?category=Nails', icon: Heart },
-                  { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '/products?category=Beauty%20Tools', icon: Heart },
-                  { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '/products?category=Wigs', icon: Heart },
-                  { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '/products?category=Supplements', icon: Leaf }
-                ].map((cat, idx) => (
+{[
+                   { name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '#/products?category=Skincare', icon: Leaf },
+                   { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '#/products?category=Makeup', icon: Heart },
+                   { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '#/products?category=Haircare', icon: Heart },
+                   { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '#/products?category=Fragrance', icon: Heart },
+                   { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '#/products?category=Nails', icon: Heart },
+                   { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '#/products?category=Beauty%20Tools', icon: Heart },
+                   { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '#/products?category=Wigs', icon: Heart },
+                   { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '#/products?category=Supplements', icon: Leaf }
+                 ].map((cat, idx) => (
                 <motion.div
                   key={cat.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -244,11 +215,11 @@ const Home = () => {
                 Featured Collection
               </h2>
             </div>
-            <motion.a
-              href="/products"
-              whileHover={{ x: 5 }}
-              className="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
-            >
+<motion.a
+               href="#/products"
+               whileHover={{ x: 5 }}
+               className="text-[8px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
+             >
               View All
               <ChevronRight size={14} className="ml-1" />
             </motion.a>
@@ -300,15 +271,15 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-block"
               >
-                <Link
-                  to="/limited-offers"
-                  className="inline-flex items-center gap-3 bg-primary text-white hover:bg-accent transition-all border-2 border-primary hover:border-accent px-12 py-4"
-                >
-                  <ArrowUpRight size={20} />
-                  <span className="text-sm font-bold uppercase tracking-[0.4em]">
-                    View All Deals
-                  </span>
-                </Link>
+<Link
+                   to="#/limited-offers"
+                   className="inline-flex items-center gap-3 bg-primary text-white hover:bg-accent transition-all border-2 border-primary hover:border-accent px-8 py-3"
+                 >
+                   <ArrowUpRight size={16} />
+                   <span className="text-xs font-bold uppercase tracking-widest">
+                     View All Deals
+                   </span>
+                 </Link>
               </motion.div>
             </div>
           </div>
@@ -336,10 +307,10 @@ const Home = () => {
                   Supplements Collection
                 </h2>
               </div>
-              <Link
-                to="/products?category=Supplements"
-                className="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
-              >
+<Link
+                 to="#/products?category=Supplements"
+                 className="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors flex items-center"
+               >
                 View All
                 <ArrowUpRight size={14} className="ml-1" />
               </Link>

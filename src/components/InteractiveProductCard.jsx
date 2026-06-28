@@ -83,7 +83,7 @@ const InteractiveProductCard = ({ product, idx, showBadge = false }) => {
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                const productUrl = window.location.origin + `/product/${product.id}`
+                const productUrl = window.location.origin + `#/product/${product.id}`
                 navigator.clipboard.writeText(productUrl)
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
