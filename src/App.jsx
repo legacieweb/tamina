@@ -194,7 +194,7 @@ const Footer = () => {
             </Link>
             
             <p className="text-gray-600 text-sm leading-relaxed max-w-md">
-              Clean, conscious beauty crafted in Kenya. Ethically sourced botanicals meet luxurious formulations for your radiant transformation.
+              Clean, conscious beauty crafted in USA. Ethically sourced botanicals meet luxurious formulations for your radiant transformation.
             </p>
 
             <div className="flex space-x-8">

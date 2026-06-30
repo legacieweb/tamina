@@ -334,7 +334,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Supplements Collection - Product Grid */}}
+        {/* Supplements Collection - Product Grid */}
         <section className="py-32 px-6 md:px-12 bg-gradient-to-br from-green-50 via-white to-teal-50 relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute top-20 right-0 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3" />

@@ -25,20 +25,10 @@ const Contact = () => {
                   <Mail size={20} className="text-primary" />
                   <span>hello@Taminabeauty.com</span>
                 </div>
-                <div className="flex items-center space-x-6 text-lg text-gray-600">
-                  <Phone size={20} className="text-primary" />
-                  <span>+254 700 000 000</span>
-                </div>
               </div>
             </div>
 
-            <div>
-              <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-8">Beauty Sanctuary</h2>
-              <div className="flex items-start space-x-6 text-lg text-gray-600">
-                <MapPin size={20} className="text-primary mt-1 flex-shrink-0" />
-                <span>Nairobi Beauty District, <br />Westlands, Nairobi, Kenya</span>
-              </div>
-            </div>
+
 
             <div>
               <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-8">International Shipping</h2>

@@ -16,7 +16,7 @@ const AboutUs = () => {
 
         <div className="space-y-12 text-gray-600 leading-relaxed text-lg">
           <p>
-            Founded in the heart of Nairobi, Tamina Beauty is a premium beauty destination blending natural Kenyan botanicals with modern skincare science. Our name reflects our legacy—empowering women to embrace their authentic beauty.
+            Founded in 2024, Tamina Beauty is a premium beauty destination blending natural botanicals with modern skincare science. Our name reflects our legacy—empowering women to embrace their authentic beauty.
           </p>
           <p>
             We believe true beauty comes from within. Our collections are meticulously formulated using locally-sourced botanical ingredients, ensuring each product meets the highest standards of quality, safety, and efficacy. From daily essentials to luxury treatments, we provide every woman with beauty rituals that enhance her natural glow.

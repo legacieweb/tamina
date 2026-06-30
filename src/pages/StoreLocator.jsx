@@ -16,29 +16,6 @@ const StoreLocator = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Main Showroom Card */}
-          <div className="bg-white p-12 md:p-20 flex flex-col justify-center rounded-sm shadow-sm border border-gray-100">
-            <h2 className="text-4xl font-black elegant-font mb-10 tracking-tight uppercase text-primary">Nairobi Beauty Studio</h2>
-            <div className="space-y-12">
-              <div className="flex items-start space-x-6 text-lg text-gray-600">
-                <MapPin size={24} className="text-accent mt-1 flex-shrink-0" />
-                <span>Nairobi Beauty District, Westlands, <br />Nairobi, Kenya</span>
-              </div>
-              <div className="flex items-start space-x-6 text-lg text-gray-600">
-                <Phone size={24} className="text-accent mt-1 flex-shrink-0" />
-                <span>+254 113 20 3900</span>
-              </div>
-              <div className="flex items-start space-x-6 text-lg text-gray-600">
-                <Clock size={24} className="text-accent mt-1 flex-shrink-0" />
-                <div>
-                  <p>Mon - Fri: 10:00 AM - 7:00 PM</p>
-                  <p>Sat: 11:00 AM - 5:00 PM</p>
-                  <p>Sun: By Appointment Only</p>
-                </div>
-              </div>
-              <button className="bg-primary text-white py-6 px-12 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-accent transition-colors w-full md:w-auto">Get Directions</button>
-            </div>
-          </div>
 
           {/* Map Placeholder */}
           <div className="aspect-square bg-gray-100 flex items-center justify-center relative overflow-hidden rounded-sm group">
