@@ -90,7 +90,7 @@ const Breadcrumb = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed top-20 md:top-24 left-4 md:left-12 z-[2000] flex items-center flex-wrap gap-2 px-4 py-2 bg-white rounded-full border border-gray-300 shadow-lg"
+      className="fixed top-16 sm:top-44 md:top-48 left-4 md:left-12 z-10 flex items-center flex-wrap gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-gray-300 shadow-lg"
       aria-label="Breadcrumb"
     >
       <Link

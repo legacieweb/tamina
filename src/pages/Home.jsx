@@ -2,28 +2,57 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { products as localProducts, heroSlides, collections } from '../data/products'
-import { ArrowUpRight, Star, Leaf, Shield, Truck, Heart, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowUpRight, Star, Leaf, Shield, Truck, Heart, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react'
 import InteractiveProductCard from '../components/InteractiveProductCard'
 import TimerCountdown from '../components/TimerCountdown'
+import CountrySelector from '../components/CountrySelector'
+
+const shuffleArray = (array) => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [autoPlay, setAutoPlay] = useState(true)
   const autoPlayRef = useRef(null)
+  const pauseTimerRef = useRef(null)
 
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+  const startAutoPlayTimer = useCallback(() => {
+    if (pauseTimerRef.current) {
+      clearTimeout(pauseTimerRef.current)
+    }
+    pauseTimerRef.current = setTimeout(() => {
+      setAutoPlay(true)
+    }, 10000)
   }, [])
 
-  const prevSlide = () => {
+  const nextSlide = useCallback(() => {
+    setAutoPlay(false)
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    startAutoPlayTimer()
+  }, [startAutoPlayTimer])
+
+  const prevSlide = useCallback(() => {
+    setAutoPlay(false)
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
-  }
+    startAutoPlayTimer()
+  }, [startAutoPlayTimer])
 
   useEffect(() => {
     if (autoPlay) {
       autoPlayRef.current = setInterval(nextSlide, 6000)
     }
-    return () => clearInterval(autoPlayRef.current)
+    return () => {
+      clearInterval(autoPlayRef.current)
+      if (pauseTimerRef.current) {
+        clearTimeout(pauseTimerRef.current)
+      }
+    }
   }, [autoPlay, nextSlide])
 
   const truncateText = (text, maxLength = 50) => {
@@ -113,7 +142,11 @@ return (
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentSlide(idx)}
+            onClick={() => {
+              setAutoPlay(false)
+              setCurrentSlide(idx)
+              startAutoPlayTimer()
+            }}
             className={`w-2 h-2 rounded-full transition-all ${
               currentSlide === idx ? 'bg-accent w-8' : 'bg-white/50'
             }`}
@@ -126,16 +159,54 @@ return (
 
 const Home = () => {
   const [products, setProducts] = useState([])
+  const [selectedCountry, setSelectedCountry] = useState(() => {
+    return localStorage.getItem('selectedCountry') || null
+  })
   const containerRef = useRef(null)
 
   useEffect(() => {
-    setProducts(localProducts.slice(0, 8))
+    setProducts(shuffleArray(localProducts).slice(0, 8))
   }, [])
+
+  const getFilteredProducts = (country) => {
+    if (!country) return localProducts
+    return localProducts.filter(product => 
+      product.shipping && country in product.shipping
+    )
+  }
+
+  const getShippingInfo = (country) => {
+    if (!country) return null
+    const filteredProducts = getFilteredProducts(country)
+    if (filteredProducts.length === 0) return null
+    const shippingTimes = filteredProducts
+      .map(p => p.shipping[country])
+      .filter(Boolean)
+    if (shippingTimes.length === 0) return null
+    return shippingTimes[0]
+  }
 
   return (
     <div ref={containerRef} className="bg-white">
+      <CountrySelector onCountrySelect={setSelectedCountry} />
       <HeroCarousel />
 
+      {selectedCountry && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-r from-accent to-rose-300 py-4 px-6 text-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-32 h-32 bg-white rounded-full blur-2xl absolute -top-16 -left-16" />
+            <div className="w-24 h-24 bg-white rounded-full blur-xl absolute -bottom-12 right-12" />
+          </div>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-white relative z-10 flex items-center justify-center space-x-2">
+            <Sparkles size={14} />
+            <span>Free Shipping on All Orders to {selectedCountry === 'USA' ? 'United States' : selectedCountry === 'UK' ? 'United Kingdom' : selectedCountry}</span>
+          </p>
+        </motion.div>
+      )}
 
       {/* Beauty Categories - Horizontal Scroll on Mobile */}
       <section className="py-24 px-6 md:px-12 bg-white">
@@ -159,15 +230,15 @@ const Home = () => {
           <div className="relative">
 <div className="flex md:grid md:grid-cols-8 gap-6 overflow-x-auto pb-1 scrollbar-hide">
 {[
-{ name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '/products?category=Skincare', icon: Leaf },
-                    { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '/products?category=Makeup', icon: Heart },
-                    { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '/products?category=Haircare', icon: Heart },
-                    { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '/products?category=Fragrance', icon: Heart },
-                    { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '/products?category=Nails', icon: Heart },
-                    { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '/products?category=Beauty%20Tools', icon: Heart },
-                    { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '/products?category=Wigs', icon: Heart },
-                    { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '/products?category=Supplements', icon: Leaf }
-                 ].map((cat, idx) => (
+              { name: 'Skincare', img: 'https://i.pinimg.com/originals/0e/f5/07/0ef507aef9a02683fc0b9fdf8163ecc2.jpg', path: '/products?category=Skincare', icon: Leaf },
+              { name: 'Makeup', img: 'https://www.tradeindia.com/wp-content/uploads/2024/09/9-Must-Have-Cosmetic-Products-for-Your-Beauty-Routine-jpg.webp', path: '/products?category=Makeup', icon: Heart },
+              { name: 'Haircare', img: 'https://www.thedailystruggle.co.uk/wp-content/uploads/2024/08/image00025.jpeg', path: '/products?category=Haircare', icon: Heart },
+              { name: 'Fragrance', img: 'https://www.dbcosmetics.com.au/cdn/shop/files/FragranceBundle-min.jpg?v=1741149357&w=800', path: '/products?category=Fragrance', icon: Heart },
+              { name: 'Nails', img: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/j/11/ee59468a-42ee-497d-96bf-c54d320269cb.jpg', path: '/products?category=Nails', icon: Heart },
+              { name: 'Beauty Tools', img: 'https://i0.wp.com/www.bangonstyleblog.com/wp-content/uploads/2016/11/SPECTRUM-MAKEUP-BRUSHES-2.jpg?resize=1500%2C2000', path: '/products?category=Beauty%20Tools', icon: Heart },
+              { name: 'Wigs', img: 'https://5.imimg.com/data5/SELLER/Default/2023/10/350899418/ZU/KS/IW/11069546/wig-for-ladies-500x500.jpg', path: '/products?category=Wigs', icon: Heart },
+              { name: 'Supplements', img: 'https://cf.cjdropshipping.com/17501184/1934779392119279616.jpg?x-oss-process=image%2Fformat%2Cwebp', path: '/products?category=Supplements', icon: Leaf }
+            ].map((cat, idx) => (
                 <motion.div
                   key={cat.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -260,17 +331,10 @@ const Home = () => {
                 <InteractiveProductCard key={product.id} product={product} idx={idx} showBadge={true} />
               ))}
             </div>
-
-<div className="text-center">
-              <Link to="/limited-offers" className="inline-flex items-center gap-3 bg-primary text-white hover:bg-accent transition-all border-2 border-primary hover:border-accent px-8 py-3">
-                <ArrowUpRight size={16} />
-                <span className="text-xs font-bold uppercase tracking-widest">View All Deals</span>
-              </Link>
-            </div>
           </div>
         </section>
 
-        {/* Supplements Collection - Product Grid */}
+        {/* Supplements Collection - Product Grid */}}
         <section className="py-32 px-6 md:px-12 bg-gradient-to-br from-green-50 via-white to-teal-50 relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute top-20 right-0 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3" />

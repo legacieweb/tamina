@@ -199,7 +199,7 @@ const Footer = () => {
 
             <div className="flex space-x-8">
               {[
-                { icon: Instagram, label: 'Instagram', url: 'https://www.instagram.com/beauty.tamira/' }, 
+                { icon: Instagram, label: 'Instagram', url: 'https://www.instagram.com/tamina_beauty_shop/' }, 
                 { 
                   icon: (props) => (
                     <svg 

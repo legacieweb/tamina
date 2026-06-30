@@ -6,12 +6,21 @@ import { products, collections } from '../data/products'
 import InteractiveProductCard from '../components/InteractiveProductCard'
 import Products from './Products'
 
+const shuffleArray = (array) => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
 const Collection = ({ title, description, category, tag }) => {
   const { collectionId } = useParams()
   const location = useLocation()
   
   const collection = collectionId ? collections.find(c => c.id === collectionId) : null
-  const collectionProducts = collection ? products.filter(p => collection.productIds.includes(p.id)) : []
+  const collectionProducts = collection ? shuffleArray(products.filter(p => collection.productIds.includes(p.id))) : []
   const displayTitle = collection?.title || title || 'Collection'
   const displayDesc = collection?.description || description || 'Exclusive Collection'
   const displayTag = collection?.tag || 'Collection'
@@ -71,7 +80,7 @@ const Collection = ({ title, description, category, tag }) => {
 
   return (
     <div className="collection-page">
-      <div className="pt-20 sm:pt-40 pb-8 sm:pb-10 max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 text-center">
+      <div className="pt-20 sm:pt-52 pb-8 sm:pb-10 max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 text-center">
          <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.3em] sm:tracking-[0.5em] text-accent mb-4 sm:mb-6">{displayDesc}</p>
          <h1 className="text-4xl sm:text-6xl md:text-9xl font-black elegant-font tracking-tighter uppercase leading-tight">{displayTitle}</h1>
       </div>

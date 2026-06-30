@@ -51,7 +51,7 @@ const Auth = () => {
           className="absolute inset-0"
         >
           <img 
-            src="https://i.imgur.com/743mvgB.jpeg" 
+            src="moni_memoni-red-hair-girl-8158373_1920.jpg" 
             alt="Maison Editorial" 
             className="w-full h-full object-cover opacity-80"
           />

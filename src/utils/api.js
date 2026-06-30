@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'https://taminabeautybackend.onrender.com//api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://taminabeautybackend.onrender.com/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('shabil_token');
